@@ -5,6 +5,7 @@
 #include "IO.h"
 #include "timer.h"
 #include "PWM.h"
+#include "robot.h"
 
 
 int main (void){
@@ -12,21 +13,29 @@ int main (void){
     //Initialisation oscillateur
     /***********************************************************************************************/
     InitOscillator();
-    
-    /************************************************************************************************/
-    //Initialisation pwm robot
-    /***********************************************************************************************/
-    InitPWM();
-    PWMSetSpeed(10, 1);
+    InitIO();
     
     // Initialisation timer
     InitTimer1();
     InitTimer23();
     
+    /************************************************************************************************/
+    //Initialisation pwm robot
+    /***********************************************************************************************/
+    InitPWM();
+    // Initialisation des vitesses
+    robotState.vitesseGaucheConsigne = 20;
+    robotState.vitesseDroiteConsigne = 20;
+
+    robotState.vitesseGaucheCommandeCourante = 0;
+    robotState.vitesseDroiteCommandeCourante = 0;
+
+
+  
+    
     /***********************************************************************************************/
     // Configuration des input et output (IO)
     /***********************************************************************************************/
-    InitIO();
     LED_BLANCHE_1 = 1;
     LED_BLEUE_1 = 1;
     LED_ORANGE_1 = 1;
