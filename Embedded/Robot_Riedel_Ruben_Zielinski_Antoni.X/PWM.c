@@ -51,7 +51,7 @@ void PWMSetSpeed(float vitesseEnPourcents, int moteur) {
         }
     }
 }
-float acceleration = 1;
+float acceleration = 0.1;
 void PWMUpdateSpeed() {
     // Cette fonction est appelee sur timer et permet de suivre des rampes d acceleration
     if (robotState.vitesseGaucheCommandeCourante < robotState.vitesseGaucheConsigne) {

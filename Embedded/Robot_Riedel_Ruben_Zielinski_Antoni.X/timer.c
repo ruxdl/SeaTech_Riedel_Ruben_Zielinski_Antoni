@@ -13,7 +13,9 @@ T1CONbits.TCKPS = 0b11; //Prescaler
 //01 = 1:8 prescale value
 //00 = 1:1 prescale value
 T1CONbits.TCS = 0; //clock source = internal clock
-PR1 = 4687;
+PR1 = 116;
+TMR1 = 0;
+IPC0bits.T1IP = 0x01;   // Priorité interruption
 IFS0bits.T1IF = 0; // Clear Timer Interrupt Flag
 IEC0bits.T1IE = 1; // Enable Timer interrupt
 T1CONbits.TON = 1; // Enable Timer
@@ -39,8 +41,8 @@ T2CONbits.TCS = 0; // Select internal instruction cycle clock
 T2CONbits.TCKPS = 0b00; // Select 1:1 Prescaler
 TMR3 = 0x00; // Clear 32-bit Timer (msw)
 TMR2 = 0x00; // Clear 32-bit Timer (lsw)
-PR3 = 0x0393; // Load 32-bit period value (msw)
-PR2 = 0x870; // Load 32-bit period value (lsw)
+PR3 = 0x01C9;
+PR2 = 0x8438;
 IPC2bits.T3IP = 0x01; // Set Timer3 Interrupt Priority Level
 IFS0bits.T3IF = 0; // Clear Timer3 Interrupt Flag
 IEC0bits.T3IE = 1; // Enable Timer3 interrupt
@@ -72,8 +74,26 @@ unsigned char toggle = 0;
 
     LED_ORANGE_1 = !LED_ORANGE_1;
 }*/
+unsigned char toggle = 0;
+
 void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
+
     IFS0bits.T3IF = 0;
+
+    if (toggle == 0) {
+
+        robotState.vitesseGaucheConsigne = -20;
+        robotState.vitesseDroiteConsigne = -20;
+
+        toggle = 1;
+    }
+    else {
+
+        robotState.vitesseGaucheConsigne = 20;
+        robotState.vitesseDroiteConsigne = 20;
+
+        toggle = 0;
+    }
 
     LED_ORANGE_1 = !LED_ORANGE_1;
 }
