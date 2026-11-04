@@ -8,6 +8,9 @@
       <itemPath>IO.h</itemPath>
       <itemPath>timer.h</itemPath>
       <itemPath>robot.h</itemPath>
+      <itemPath>Toolbox.h</itemPath>
+      <itemPath>PWM.h</itemPath>
+      <itemPath>newfile.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -26,6 +29,8 @@
       <itemPath>IO.c</itemPath>
       <itemPath>timer.c</itemPath>
       <itemPath>robot.c</itemPath>
+      <itemPath>Toolbox.c</itemPath>
+      <itemPath>PWM.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
@@ -38,7 +43,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>ICD4Tool</platformTool>
         <languageToolchain>XCDSC</languageToolchain>
-        <languageToolchainVersion>3.31.00</languageToolchainVersion>
+        <languageToolchainVersion>3.30</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
